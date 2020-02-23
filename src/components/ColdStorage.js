@@ -1,17 +1,23 @@
 import React from 'react';
 import { Segment } from 'semantic-ui-react'
 
-const ColdStorage = () => (
-  <Segment.Group className="HQComps">
-    <Segment compact>
-      <h3 className="labels">ColdStorage</h3>
-    </Segment>
-    <Segment compact>
+import HostList from './HostList'
 
-      {/* Cold Storage contains hosts....but how? Directly? Or is there something else we could use to contain them... */}
+const ColdStorage = (props) => {
 
-    </Segment>
-  </Segment.Group>
-)
+  let hosts = props.hosts
+  let hostsInStorage = hosts.filter( host => host.active === false )
+  
+  return (
+    <Segment.Group className="HQComps">
+      <Segment compact>
+        <h3 className="labels">ColdStorage</h3>
+      </Segment>
+      <Segment compact>
+        <HostList hostsInStorage={hostsInStorage} context="coldStorage" />
+      </Segment>
+    </Segment.Group>
+  )
+}
 
 export default ColdStorage
